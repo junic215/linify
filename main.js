@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Initial styles for animated elements
-    const animatedElements = document.querySelectorAll('.hero-text, .hero-preview-mobile, .about-content, .section-title');
+    const animatedElements = document.querySelectorAll('.hero-text, .goods, .about-content, .section-title');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
