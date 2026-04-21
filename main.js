@@ -52,4 +52,27 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.style.boxShadow = 'none';
         }
     });
+
+    // Before/After Slider logic
+    const slider = document.getElementById('comparison-slider');
+    const afterDiv = document.getElementById('comparison-after-div');
+    const handle = document.getElementById('comparison-handle');
+    const afterImg = document.getElementById('comparison-after-img');
+    const container = document.querySelector('.comparison-container');
+
+    if (slider && afterDiv && handle && container) {
+        const updateSlider = () => {
+            const value = slider.value;
+            // Reveal the illustration (top layer) from the left
+            // Moving slider to the left (0) reveals more of the bottom layer (before.png)
+            // Moving slider to the right (100) reveals more of the top layer (illustration)
+            afterDiv.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+            handle.style.left = `${value}%`;
+        };
+
+        slider.addEventListener('input', updateSlider);
+        window.addEventListener('resize', updateSlider);
+        
+        updateSlider();
+    }
 });
