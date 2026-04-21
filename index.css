@@ -1,0 +1,238 @@
+:root {
+  --bg-color: #fafafa;
+  --text-color: #1a1a1a;
+  --accent-color: #d4af37; /* Gold accent */
+  --secondary-color: #555;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background: var(--glass-bg);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-color);
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f0f0 100%);
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(3rem, 10vw, 6rem);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #555 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+.hero-preview-mobile {
+  display: none; /* Desktop hidden */
+}
+
+/* Gallery Section */
+.gallery {
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+.infinite-scroll-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.scroll-track {
+  display: flex;
+  width: calc(350px * 10);
+  animation: scroll 40s linear infinite;
+}
+
+.scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.gallery-item {
+  width: 350px;
+  flex-shrink: 0;
+  margin: 0 1rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-350px * 5 - 5rem)); }
+}
+
+/* About Section */
+.about {
+  padding: 8rem 0;
+  background: #fff;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 120px 0 60px;
+  }
+
+  .hero-preview-mobile {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    animation: fadeInUp 1s ease-out 0.6s backwards;
+  }
+
+  .hero-preview-mobile img {
+    width: 140px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .about-text h2 {
+    font-size: 2.5rem;
+  }
+
+  .scroll-track {
+    width: calc(250px * 10);
+  }
+
+  .gallery-item {
+    width: 250px;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-250px * 5 - 5rem)); }
+  }
+}
